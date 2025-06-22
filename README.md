@@ -1,3 +1,3 @@
 # Automation-of-Bandgap-reference
-# various bandgap reference architectures using 180 and 65nm CMOS process and analysed its design specifications.
-# Analysing the output voltage error pattern and develop suitable Compensation techniques and automate the process using python scripts.
+### To design various bandgap reference architectures using 180 and 65nm CMOS process and analysed its design specifications.
+### Analysing the output voltage error pattern and develop suitable Compensation techniques and automate the process using python scripts.
