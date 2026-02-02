@@ -1,0 +1,37 @@
+// Point Netlist Generated on: Dec 18 12:25:43 2025
+// Generated for: spectre
+// Design Netlist Generated on: Dec 18 12:25:43 2025
+// Design library name: bandgp
+// Design cell name: ckt4
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters VDD=vdd vds=vol_ds temperature=27 length=ch_len vgs=vol_gs
+include "/cad/library/TSMC/65/GP/oa_pdk/models/spectre/cor_std_mos.scs" section=tt
+
+// Library name: bandgp
+// Cell name: ckt4
+// View name: schematic
+M0 (net2 net1 net3 net3) pch l=length w=200n m=1 nf=1 sd=200n ad=3.5e-14 \
+        as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n sb=175n sca=0 \
+        scb=0 scc=0
+V5 (net2 0) vsource dc=vds type=dc
+V3 (net3 0) vsource dc=VDD type=dc
+V0 (net1 0) vsource dc=vgs type=dc
+simulatorOptions options psfversion="1.1.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=125 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+dc dc param=vgs start=0 stop=vol_vdd step=0.05 oppoint=rawfile maxiters=150 \
+    maxsteps=10000 annotate=status
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save M0:gmoverid M0:ids 
+saveOptions options save=allpub
+

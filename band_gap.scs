@@ -1,0 +1,159 @@
+// Point Netlist Generated on: Dec 16 10:24:43 2025
+// Generated for: spectre
+// Design Netlist Generated on: Dec 16 09:41:21 2025
+// Design library name: bandgp
+// Design cell name: top_bandgap
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters L_core=l_c W_core=w_c C_L_pmos_mirror=c_l_p_m \
+    C_no_of_fingers_pmos_mirror=c_f_p_m C_W_pmos_mirror=c_w_p_m Ibias=IBIAS \
+    L_core_bias=l_c_b L_nmos_ibias=l_n_i L_pmos_ibias=l_p_i L_tail=l_t \
+    no_D1=d1 no_D2=d2 no_of_fingers_nmos_ibias=f_n_i \
+    no_of_fingers_nmos_opamp_bias=f_n_o_b no_of_fingers_pmos_opamp_bias=f_p_o_b \
+    W_core_bias=w_c_b W_nmos_ibias=w_n_i W_nmos_opamp=w_n_o W_pmos_ibias=w_p_i \
+    W_pmos_mirror=w_p_m W_pmos_opamp=w_p_o W_tail=w_t L_pmos_mirror=l_p_m \
+    L_nmos_opamp=l_n_o L_pmos_opamp=l_p_o no_of_fingers_nmos_mirror_bias=f_n_m_b \
+    no_of_fingers_nmos_opamp=f_n_o no_of_fingers_pmos_mirror=f_p_m \
+    no_of_fingers_pmos_opamp=f_p_o no_of_fingers_tail=f_t res1=RES1 res2=RES2 \
+    res3=RES3 VDD=vdd cornerd=cd cornerm=cm cornerc=cc temperature=27
+include "/cad/library/TSMC/65/GP/oa_pdk/models/spectre/cor_dio.scs" section=cd
+include "/cad/library/TSMC/65/GP/oa_pdk/models/spectre/cor_std_mos.scs" section=cm
+include "/cad/library/TSMC/65/GP/oa_pdk/models/spectre/cor_mim.scs" section=cc
+
+// Library name: bandgp
+// Cell name: CORE
+// View name: schematic
+subckt CORE AVDD AVSS VOUT mirror opamp_minus opamp_plus opamp_vout
+parameters _par0 _par1 _par2 _par3 _par4 _par5 _par6 _par7 _par8 _par9 \
+        _par10 _par11 _par12 _par13 _par14 _par15
+    M6 (net2 net2 AVDD AVDD) pch l=_par0 w=_par1 m=1 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M0 (net4 opamp_vout AVDD AVDD) pch l=_par2 w=_par3 m=_par4 nf=1 \
+        sd=200n ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 \
+        sa=175n sb=175n sca=0 scb=0 scc=0
+    M1 (net3 opamp_vout AVDD AVDD) pch l=_par2 w=_par3 m=_par4 nf=1 \
+        sd=200n ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 \
+        sa=175n sb=175n sca=0 scb=0 scc=0
+    M2 (net1 opamp_vout AVDD AVDD) pch l=_par2 w=_par3 m=_par4 nf=1 \
+        sd=200n ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 \
+        sa=175n sb=175n sca=0 scb=0 scc=0
+    M3 (VOUT net2 net4 AVDD) pch l=_par5 w=_par6 m=_par7 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M4 (opamp_minus net2 net3 AVDD) pch l=_par5 w=_par6 m=_par7 nf=1 \
+        sd=200n ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 \
+        sa=175n sb=175n sca=0 scb=0 scc=0
+    M5 (opamp_plus net2 net1 AVDD) pch l=_par5 w=_par6 m=_par7 nf=1 \
+        sd=200n ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 \
+        sa=175n sb=175n sca=0 scb=0 scc=0
+    R4 (opamp_plus AVSS) resistor r=_par8
+    R2 (opamp_plus net5) resistor r=_par9 isnoisy=yes
+    R1 (VOUT AVSS) resistor r=_par10 isnoisy=yes
+    R3 (opamp_minus AVSS) resistor r=_par8
+    D1 (net5 AVSS) ndio area=1e-10 pj=4e-05 m=_par11
+    D0 (opamp_minus AVSS) ndio area=1e-10 pj=4e-05 m=_par12
+    M7 (net2 mirror AVSS AVSS) nch l=_par13 w=_par14 m=_par15 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+ends CORE
+// End of subcircuit definition.
+
+// Library name: bandgp
+// Cell name: OPAMP
+// View name: schematic
+subckt OPAMP AVDD AVSS mirror opamp_minus opamp_plus opamp_vout
+parameters _par0 _par1 _par2 _par3 _par4 _par5 _par6 _par7 _par8 _par9 \
+        _par10 _par11 _par12 _par13 _par14 _par15 _par16
+    M11 (net1 net1 AVDD AVDD) pch l=60n w=200n m=_par0 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M10 (net2 net4 AVDD AVDD) pch l=_par1 w=_par2 m=1 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M9 (net4 net4 AVDD AVDD) pch l=_par1 w=_par2 m=1 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M3 (net5 net1 net6 AVDD) pch l=_par3 w=_par4 m=_par5 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M2 (net6 net5 AVDD AVDD) pch l=_par3 w=_par4 m=_par5 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M1 (opamp_vout net1 net7 AVDD) pch l=_par3 w=_par4 m=_par5 nf=1 \
+        sd=200n ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 \
+        sa=175n sb=175n sca=0 scb=0 scc=0
+    M0 (net7 net5 AVDD AVDD) pch l=_par3 w=_par4 m=_par5 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M15 (net2 net2 net3 AVSS) nch l=60n w=200n m=_par6 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M14 (mirror mirror AVSS AVSS) nch l=_par7 w=_par8 m=_par9 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M13 (net4 mirror AVSS AVSS) nch l=_par7 w=_par8 m=_par9 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M12 (net1 mirror AVSS AVSS) nch l=_par7 w=_par8 m=_par9 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M8 (net3 mirror AVSS AVSS) nch l=_par10 w=_par11 m=_par12 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M7 (net9 opamp_minus net3 AVSS) nch l=_par13 w=_par14 m=_par15 nf=1 \
+        sd=200n ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 \
+        sa=175n sb=175n sca=0 scb=0 scc=0
+    M6 (net5 net2 net8 AVSS) nch l=_par13 w=_par14 m=_par15 nf=1 sd=200n \
+        ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 sa=175n \
+        sb=175n sca=0 scb=0 scc=0
+    M5 (net8 opamp_plus net3 AVSS) nch l=_par13 w=_par14 m=_par15 nf=1 \
+        sd=200n ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 \
+        sa=175n sb=175n sca=0 scb=0 scc=0
+    M4 (opamp_vout net2 net9 AVSS) nch l=_par13 w=_par14 m=_par15 nf=1 \
+        sd=200n ad=3.5e-14 as=3.5e-14 pd=750n ps=750n nrd=0.5 nrs=0.5 \
+        sa=175n sb=175n sca=0 scb=0 scc=0
+    I1 (AVDD mirror) isource dc=_par16 type=dc
+ends OPAMP
+// End of subcircuit definition.
+
+// Library name: bandgp
+// Cell name: top_bandgap
+// View name: schematic
+I9 (net2 0 net7 net5 net6 net3 net4) CORE _par0=L_core _par1=W_core \
+        _par2=L_pmos_mirror _par3=W_pmos_mirror \
+        _par4=no_of_fingers_pmos_mirror _par5=C_L_pmos_mirror \
+        _par6=C_W_pmos_mirror _par7=C_no_of_fingers_pmos_mirror _par8=res2 \
+        _par9=res1 _par10=res3 _par11=no_D2 _par12=no_D1 \
+        _par13=L_core_bias _par14=W_core_bias \
+        _par15=no_of_fingers_nmos_mirror_bias
+IPRB0 (net4 net1) iprobe
+I5 (net2 0 net5 net6 net3 net1) OPAMP _par0=no_of_fingers_pmos_opamp_bias \
+        _par1=L_pmos_ibias _par2=W_pmos_ibias _par3=L_pmos_opamp \
+        _par4=W_pmos_opamp _par5=no_of_fingers_pmos_opamp \
+        _par6=no_of_fingers_nmos_opamp_bias _par7=L_nmos_ibias \
+        _par8=W_nmos_ibias _par9=no_of_fingers_nmos_ibias _par10=L_tail \
+        _par11=W_tail _par12=no_of_fingers_tail _par13=L_nmos_opamp \
+        _par14=W_nmos_opamp _par15=no_of_fingers_nmos_opamp _par16=Ibias
+V0 (net2 0) vsource dc=VDD type=dc
+C0 (net4 net3) mimcap_sin lt=10u wt=10u mimflag=3 mf=1 mismatchflag=0
+simulatorOptions options psfversion="1.1.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+stb stb start=0.001 stop=100000000 probe=IPRB0 localgnd=0 annotate=status 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+dc dc param=temp start=-40 stop=125 oppoint=rawfile maxiters=150 \
+    maxsteps=10000 annotate=status
+noise ( net7 ) noise start=0.0001 stop=10000M annotate=status 
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save net7 V0:p I9.R2:1 I9.R4:1 
+saveOptions options save=allpub
+
